@@ -1,9 +1,11 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import Header from "./template/Header";
 import Counter from "./components/Counter";
 import Movie from "./components/Movie";
 import MovieForm from "./components/MovieForm";
+import Navbar from "./components/Navbar";
+import { BrowserRouter as Router, Switch, Route, Routes } from "react-router-dom";
+import Users from "./pages/Users";
 
 function App() {
     useEffect(() => {
@@ -48,22 +50,37 @@ function App() {
     };
 
     return (
-        <div className="App">
-            <Header />
-            <form onSubmit={onSubmit}>
-                <input placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} /> <br />
-                <input placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /> <br />
-                <button type="submit">Login</button>
-            </form>
-            <Counter />
-            <Counter click="click1" />
-            <Counter click="click2" />
-            <div>{renderCondition}</div>
-            {condition ? <div>True</div> : <div>False</div>}
-            <button onClick={toggle}>Toggle</button>'
-            <MovieForm addMovie={addMovie} />
-            {renderMovies}
-        </div>
+        <Router>
+            <div className="App">
+                <Navbar />
+                <Routes>
+                    <Route
+                        path="/movies"
+                        element={
+                            <div>
+                                {condition ? <div>True</div> : <div>False</div>}
+                                <button onClick={toggle}>Toggle</button>
+                                <MovieForm addMovie={addMovie} />
+                            </div>
+                        }
+                    />
+                    <Route
+                        path="/users"
+                        element={
+                            <>
+                                <Users />
+                                <form onSubmit={onSubmit}>
+                                    <input placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} /> <br />
+                                    <input placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /> <br />
+                                    <button type="submit">Login</button>
+                                </form>
+                            </>
+                        }
+                    />
+                    <Route path="/" element={<h1>Home</h1>} exact />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 
