@@ -6,6 +6,15 @@ import Spinner from "../components/Spinner";
 const Users = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        console.log(username, password);
+        alert("submitted");
+    };
+
     useEffect(() => {
         axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
             setUsers(res.data);
@@ -16,6 +25,11 @@ const Users = () => {
     return (
         <>
             <h1>Users</h1>
+            <form onSubmit={onSubmit}>
+                <input placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} /> <br />
+                <input placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /> <br />
+                <button type="submit">Login</button>
+            </form>
             {loading ? <Spinner /> : <UserList users={users} />}
         </>
     );
