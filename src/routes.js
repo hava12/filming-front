@@ -2,6 +2,7 @@ import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import User from "./pages/User";
 import Users from "./pages/Users";
+import Config from "./pages/Config";
 
 export default [
     {
@@ -19,5 +20,9 @@ export default [
     {
         path: "/users/:id",
         component: User,
+    },
+    {
+        path: "/config",
+        component: Config,
     },
 ];
