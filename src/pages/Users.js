@@ -11,8 +11,8 @@ const Users = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        const userInfo = { username: username, password: password };
-        axios.post("http://localhost:8080/v1/login", userInfo).then((res) => {
+        const userInfo = { usename: username, password: password };
+        axios.post("http://localhost:8000/user-service/v1/login", userInfo).then((res) => {
             console.log(res);
         });
         console.log(username, password);
