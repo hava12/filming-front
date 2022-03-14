@@ -12,9 +12,14 @@ const Users = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         const userInfo = { usename: username, password: password };
-        axios.post("http://localhost:8000/user-service/v1/login", userInfo).then((res) => {
-            console.log(res);
-        });
+        axios
+            .post("http://localhost:8000/user-service/v1/login", userInfo)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                alert("에러 발생");
+            });
         console.log(username, password);
     };
 
