@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Config = () => {
+    const [configs, setConfigs] = useState([]);
     return (
         <>
             <table className={"table"}>
@@ -12,7 +13,7 @@ const Config = () => {
                         <th>BypassYn</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>{configs}</tbody>
             </table>
         </>
     );
