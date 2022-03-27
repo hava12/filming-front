@@ -4,6 +4,7 @@ const Config = () => {
     const [configs, setConfigs] = useState([]);
     return (
         <>
+            <input type="file" id="fileUpload" />
             <table className={"table"}>
                 <thead>
                     <tr className={"thead"}>
